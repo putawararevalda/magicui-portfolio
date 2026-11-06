@@ -9,6 +9,7 @@ import ContactSection from "@/components/section/contact-section";
 import HackathonsSection from "@/components/section/hackathons-section";
 import ProjectsSection from "@/components/section/projects-section";
 import WorkSection from "@/components/section/work-section";
+import KnowledgeGraph from "@/components/knowledge-graph";
 import { ArrowUpRight, BookOpen } from "lucide-react";
 
 const BLUR_FADE_DELAY = 0.04;
@@ -176,8 +177,23 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <section id="knowledge-graph">
+        <div className="flex min-h-0 flex-col gap-y-4">
+          <BlurFade delay={BLUR_FADE_DELAY * 10.5}>
+            <div className="flex flex-col gap-y-1">
+              <h2 className="text-xl font-bold">Knowledge Graph</h2>
+              <p className="text-sm text-muted-foreground">
+                An interactive map tracing connections across my multi-agent projects, data platforms, research, and technical stack. Drag nodes or click any entity to inspect relationships.
+              </p>
+            </div>
+          </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 11}>
+            <KnowledgeGraph />
+          </BlurFade>
+        </div>
+      </section>
       <section id="projects">
-        <BlurFade delay={BLUR_FADE_DELAY * 11}>
+        <BlurFade delay={BLUR_FADE_DELAY * 11.5}>
           <ProjectsSection />
         </BlurFade>
       </section>
