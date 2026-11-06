@@ -9,7 +9,7 @@ import ContactSection from "@/components/section/contact-section";
 import HackathonsSection from "@/components/section/hackathons-section";
 import ProjectsSection from "@/components/section/projects-section";
 import WorkSection from "@/components/section/work-section";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, BookOpen } from "lucide-react";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -34,7 +34,7 @@ export default function Page() {
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
               <Avatar className="size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted">
-                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
+                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} className="object-cover" />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
             </BlurFade>
@@ -113,6 +113,52 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <section id="certifications">
+        <div className="flex min-h-0 flex-col gap-y-6">
+          <BlurFade delay={BLUR_FADE_DELAY * 8}>
+            <h2 className="text-xl font-bold">Certifications</h2>
+          </BlurFade>
+          <div className="flex flex-col gap-6">
+            {DATA.certifications.map((cert, index) => (
+              <BlurFade
+                key={cert.title}
+                delay={BLUR_FADE_DELAY * 8.5 + index * 0.05}
+              >
+                <Link
+                  href={cert.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-x-3 justify-between group"
+                >
+                  <div className="flex items-center gap-x-3 flex-1 min-w-0">
+                    {cert.logoUrl ? (
+                      <img
+                        src={cert.logoUrl}
+                        alt={cert.title}
+                        className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden object-contain flex-none"
+                      />
+                    ) : (
+                      <div className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border bg-muted flex-none" />
+                    )}
+                    <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+                      <div className="font-semibold leading-none flex items-center gap-2">
+                        {cert.title}
+                        <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" aria-hidden />
+                      </div>
+                      <div className="font-sans text-sm text-muted-foreground">
+                        {cert.issuer}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1 text-xs tabular-nums text-muted-foreground text-right flex-none">
+                    <span>{cert.dates}</span>
+                  </div>
+                </Link>
+              </BlurFade>
+            ))}
+          </div>
+        </div>
+      </section>
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
@@ -122,7 +168,7 @@ export default function Page() {
             {DATA.skills.map((skill, id) => (
               <BlurFade key={skill.name} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
                 <div className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-4 flex items-center gap-2">
-                  {skill.icon && <skill.icon className="size-4 rounded overflow-hidden object-contain" />}
+                  {"icon" in skill && skill.icon && <skill.icon className="size-4 rounded overflow-hidden object-contain" />}
                   <span className="text-foreground text-sm font-medium">{skill.name}</span>
                 </div>
               </BlurFade>
@@ -134,6 +180,51 @@ export default function Page() {
         <BlurFade delay={BLUR_FADE_DELAY * 11}>
           <ProjectsSection />
         </BlurFade>
+      </section>
+      <section id="publications">
+        <div className="flex min-h-0 flex-col gap-y-6">
+          <BlurFade delay={BLUR_FADE_DELAY * 12}>
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold">Publications</h2>
+            </div>
+          </BlurFade>
+          <div className="flex flex-col gap-5">
+            {DATA.publications.map((pub, index) => (
+              <BlurFade
+                key={pub.title}
+                delay={BLUR_FADE_DELAY * 12.5 + index * 0.05}
+              >
+                <div className="border rounded-xl p-4 bg-card text-card-foreground shadow-xs flex flex-col gap-2">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-start gap-2.5">
+                      <BookOpen className="size-4 text-primary mt-1 shrink-0" />
+                      <div className="flex flex-col gap-1">
+                        <Link
+                          href={pub.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold text-sm hover:underline flex items-center gap-1.5 group"
+                        >
+                          {pub.title}
+                          <ArrowUpRight className="h-3 w-3 text-muted-foreground opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+                        </Link>
+                        <p className="text-xs text-muted-foreground font-sans">
+                          {pub.authors}
+                        </p>
+                        <p className="text-xs text-muted-foreground font-medium italic">
+                          {pub.conference}
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-xs tabular-nums text-muted-foreground shrink-0 font-medium">
+                      {pub.year}
+                    </span>
+                  </div>
+                </div>
+              </BlurFade>
+            ))}
+          </div>
+        </div>
       </section>
       <section id="hackathons">
         <BlurFade delay={BLUR_FADE_DELAY * 13}>

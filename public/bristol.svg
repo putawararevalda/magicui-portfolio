@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <rect width="48" height="48" rx="24" fill="#B01C2E"/>
+  <path d="M14 16 L24 10 L34 16 L34 26 C34 32, 24 38, 24 38 C24 38, 14 32, 14 26 Z" fill="#FFFFFF"/>
+  <path d="M17 18 L24 13 L31 18 L31 25 C31 29, 24 34, 24 34 C24 34, 17 29, 17 25 Z" fill="#B01C2E"/>
+  <text x="24" y="27" font-family="serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">UoB</text>
+</svg>

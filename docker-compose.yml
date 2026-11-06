@@ -1,0 +1,22 @@
+services:
+  portfolio-38521:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: magic-ui-portfolio:38521
+    container_name: magic-ui-portfolio-38521
+    restart: unless-stopped
+    ports:
+      - "38521:38521"
+    environment:
+      - PORT=38521
+      - HOSTNAME=0.0.0.0
+      - TZ=Asia/Jakarta
+    labels:
+      net.casaos.app.name: "Magic UI Portfolio (38521)"
+      net.casaos.app.icon: "https://raw.githubusercontent.com/magicuidesign/portfolio/main/public/favicon.ico"
+      net.casaos.app.category: "Portfolio & CV"
+      net.casaos.app.description: "Minimalist developer portfolio using Next.js 16, React 19, TailwindCSS, Shadcn UI and Magic UI"
+      net.casaos.app.show_in_launcher: "true"
+      net.casaos.app.port_map: "38521"
+      net.casaos.app.scheme: "http"

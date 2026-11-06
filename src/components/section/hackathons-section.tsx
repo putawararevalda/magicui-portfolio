@@ -12,16 +12,14 @@ export default function HackathonsSection() {
           <div className="flex items-center w-full">
             <div className="flex-1 h-px bg-linear-to-r from-transparent from-5% via-border via-95% to-transparent" />
             <div className="border bg-primary z-10 rounded-xl px-4 py-1">
-              <span className="text-background text-sm font-medium">Hackathons</span>
+              <span className="text-background text-sm font-medium">Competitions & Awards</span>
             </div>
             <div className="flex-1 h-px bg-linear-to-l from-transparent from-5% via-border via-95% to-transparent" />
           </div>
           <div className="flex flex-col gap-y-3 items-center justify-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">I like building things</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Awards & Competitions</h2>
             <p className="text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed text-balance text-center">
-              During my time in university, I attended {DATA.hackathons.length}+
-              hackathons. People from around the country would come together and
-              build incredible things in 2-3 days. It was eye-opening to see the endless possibilities brought to life by a group of motivated and passionate individuals.
+              A track record of competitive data science and machine learning competitions, achieving 1st and 2nd place honors in deep learning and predictive analytics.
             </p>
           </div>
         </div>
@@ -46,6 +44,13 @@ export default function HackathonsSection() {
                 {hackathon.title && (
                   <h3 className="font-semibold leading-none">{hackathon.title}</h3>
                 )}
+                {"win" in hackathon && hackathon.win && (
+                  <div>
+                    <Badge variant="secondary" className="text-xs font-semibold w-fit">
+                      {hackathon.win}
+                    </Badge>
+                  </div>
+                )}
                 {hackathon.location && (
                   <p className="text-sm text-muted-foreground">{hackathon.location}</p>
                 )}
@@ -56,7 +61,7 @@ export default function HackathonsSection() {
                 )}
                 {hackathon.links && hackathon.links.length > 0 && (
                   <div className="mt-1 flex flex-row flex-wrap items-start gap-2">
-                    {hackathon.links.map((link, idx) => (
+                    {(hackathon.links as readonly any[]).map((link: any, idx: number) => (
                       <Link
                         href={link.href}
                         key={idx}

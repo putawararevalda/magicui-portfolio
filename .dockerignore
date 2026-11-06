@@ -1,0 +1,7 @@
+node_modules
+.next
+.git
+.content-collections
+*.log
+*.pid
+.env*.local
