@@ -16,7 +16,7 @@ export const DATA = {
   description:
     "AI Engineer & Data Scientist specializing in Agentic AI architectures, LLM systems, RAG pipelines, and applied Machine Learning.",
   summary:
-    "AI Engineer and Data Scientist with an MSc in Data Science (Distinction) from the University of Bristol and a strong foundation in Industrial Engineering from Institut Teknologi Bandung.\n\nSpecialized in building production LLM applications, multi-agent AI architectures (LangGraph, CrewAI), entity-aware SQL generation pipelines, and end-to-end data platforms. Proven track record leading AI initiatives, deploying computer vision and speech models, and engineering reliable data pipelines across telecommunications, state-owned enterprises, and national public-sector institutions.",
+    "AI Engineer and Data Scientist with an MSc in Data Science (Distinction) from the University of Bristol and a strong foundation in Industrial Engineering from Institut Teknologi Bandung.\n\nSpecialized in building production LLM applications, multi-agent AI architectures (LangGraph), entity-aware SQL generation pipelines, and end-to-end data platforms. Proven track record leading AI initiatives, deploying computer vision and speech models, and engineering reliable data pipelines across telecommunications, state-owned enterprises, and national public-sector institutions.",
   avatarUrl: "/me.png",
   skills: [
     { name: "Python", icon: Python },
