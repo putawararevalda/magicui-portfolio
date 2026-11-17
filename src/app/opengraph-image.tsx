@@ -1,8 +1,10 @@
  
 import { ImageResponse } from "next/og";
 import { DATA } from "@/data/resume";
+import fs from "fs";
+import path from "path";
 
-export const runtime = "edge";
+export const dynamic = "force-static";
 
 export const alt = DATA.name;
 export const size = {
@@ -13,18 +15,23 @@ export const contentType = "image/png";
 
 const getFontData = async () => {
     try {
-        const [cabinetGrotesk, clashDisplay] = await Promise.all([
-            fetch(
-                new URL("../../public/fonts/CabinetGrotesk-Medium.ttf", import.meta.url)
-            ).then((res) => res.arrayBuffer()),
-            fetch(
-                new URL("../../public/fonts/ClashDisplay-Semibold.ttf", import.meta.url)
-            ).then((res) => res.arrayBuffer()),
-        ]);
+        const fontDir = path.join(process.cwd(), "public", "fonts");
+        const cabinetGrotesk = fs.readFileSync(path.join(fontDir, "CabinetGrotesk-Medium.ttf"));
+        const clashDisplay = fs.readFileSync(path.join(fontDir, "ClashDisplay-Semibold.ttf"));
         return { cabinetGrotesk, clashDisplay };
     } catch (error) {
         console.error("Failed to load fonts:", error);
         return null;
+    }
+};
+
+const getAvatarDataUrl = () => {
+    try {
+        const filePath = path.join(process.cwd(), "public", "me.png");
+        const buffer = fs.readFileSync(filePath);
+        return `data:image/png;base64,${buffer.toString("base64")}`;
+    } catch (e) {
+        return undefined;
     }
 };
 
@@ -108,9 +115,7 @@ const styles = {
 export default async function Image() {
     try {
         const fontData = await getFontData();
-        const imageUrl = DATA.avatarUrl
-            ? new URL(DATA.avatarUrl, DATA.url).toString()
-            : undefined;
+        const imageUrl = getAvatarDataUrl();
 
         return new ImageResponse(
             (
